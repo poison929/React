@@ -13,6 +13,5 @@ import memoryUtils from './utils/memoryUtils'
 const user = storageUtils.getUser()
 memoryUtils.user = user
 
-
 // 将App组件标签渲染到index页面的div上
 ReactDOM.render(<App />, document.getElementById('root'))

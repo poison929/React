@@ -11,5 +11,20 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+    function TreeNode(val, left, right) {
+    this.val = (val===undefined ? 0 : val)
+    this.left = (left===undefined ? null : left)
+    this.right = (right===undefined ? null : right)
+}
+const root = new TreeNode(1,2,3)
+  function traverse(root){
+    if(root===null) null
+    traverse(root.left)
+    console.log(root.val)
+    traverse(root.right)
+  }
+  traverse(root)
+    </script>
   </body>
 </html>

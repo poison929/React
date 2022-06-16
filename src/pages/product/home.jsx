@@ -147,7 +147,7 @@ export default class ProductHome extends Component {
         </Select>
         <Input
           placeholder='关键字'
-          style={{width: 150, margin: '0 15px'}}
+          style={{width: '150px', margin: '0 15px'}}
           value={searchName}
           onChange={event => this.setState({searchName:event.target.value})}
         />

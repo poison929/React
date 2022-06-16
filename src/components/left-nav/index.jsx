@@ -7,7 +7,7 @@ import menuList from '../../config/menuConfig'
 import './index.less'
 import memoryUtils from "../../utils/memoryUtils";
 
-const SubMenu = Menu.SubMenu;
+const SubMenu = Menu.SubMenu;//有子菜单项
 
 /*
 左侧导航的组件
@@ -41,7 +41,7 @@ class LeftNav extends Component {
   使用map() + 递归调用
   */
   getMenuNodes_map = (menuList) => {
-    return menuList.map(item => {
+    return menuList.map(item => {//按需动态生成结构
       /*
         {
           title: '首页', // 菜单标题名称
@@ -79,7 +79,7 @@ class LeftNav extends Component {
             </Link>
           </Menu.Item>
         )
-      } else {
+      } else {//存在子菜单项
         return (
           <SubMenu
             key={item.key}
@@ -103,7 +103,7 @@ class LeftNav extends Component {
   使用reduce() + 递归调用
   */
   getMenuNodes = (menuList) => {
-    // 得到当前请求的路由路径
+    // 获取当前请求的路由路径
     const path = this.props.location.pathname
 
     return menuList.reduce((pre, item) => {
@@ -123,13 +123,12 @@ class LeftNav extends Component {
         } else {
 
           // 查找一个与当前请求路径匹配的子Item
-          const cItem = item.children.find(cItem => path.indexOf(cItem.key)===0)
+          const cItem = item.children.find(cItem => path.indexOf(cItem.key)===0)//保证子路由正常展开，而不是全等才展开
           // 如果存在, 说明当前item的子列表需要打开
           if (cItem) {
             this.openKey = item.key
+            console.log(123);
           }
-
-
           // 向pre添加<SubMenu>
           pre.push((
             <SubMenu
@@ -141,7 +140,7 @@ class LeftNav extends Component {
             </span>
               }
             >
-              {this.getMenuNodes(item.children)}
+              {this.getMenuNodes(item.children)}{/* 递归 */}
             </SubMenu>
           ))
         }
@@ -175,7 +174,7 @@ class LeftNav extends Component {
       <div className="left-nav">
         <Link to='/' className="left-nav-header">
           <img src={logo} alt="logo"/>
-          <h1>硅谷后台</h1>
+          <h1>管理后台</h1>
         </Link>
 
         <Menu
@@ -197,7 +196,7 @@ class LeftNav extends Component {
 
 /*
 withRouter高阶组件:
-包装非路由组件, 返回一个新的组件
+包装 非 路由组件, 返回一个新的组件
 新的组件向非路由组件传递3个属性: history/location/match
  */
 export default withRouter(LeftNav)

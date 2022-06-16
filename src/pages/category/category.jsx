@@ -95,7 +95,7 @@ export default class Category extends Component {
       parentId: category._id,
       parentName: category.name
     }, () => { // 在状态更新且重新render()后执行
-      console.log('parentId', this.state.parentId) // '0'
+      console.log('parentId', this.state.parentId) 
       // 获取二级分类列表显示
       this.getCategorys()
     })
@@ -202,7 +202,7 @@ export default class Category extends Component {
         // 2. 发请求更新分类
         const result = await reqUpdateCategory({categoryId, categoryName})
         if (result.status===0) {
-          // 3. 重新显示列表
+        // 3. 重新显示列表
           this.getCategorys()
         }
       }
@@ -210,8 +210,6 @@ export default class Category extends Component {
 
 
   }
-
-
 
   /*
   为第一次render()准备数据
@@ -276,7 +274,7 @@ export default class Category extends Component {
         </Modal>
 
         <Modal
-          title="更新分类"
+          title="修改分类"
           visible={showStatus===2}
           onOk={this.updateCategory}
           onCancel={this.handleCancel}

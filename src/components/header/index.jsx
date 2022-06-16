@@ -17,8 +17,8 @@ class Header extends Component {
 
   state = {
     currentTime: formateDate(Date.now()), // 当前时间字符串
-    dayPictureUrl: '', // 天气图片url
     weather: '', // 天气的文本
+    city:''
   }
 
   getTime = () => {
@@ -31,9 +31,10 @@ class Header extends Component {
 
   getWeather = async () => {
     // 调用接口请求异步获取数据
-    const {dayPictureUrl, weather} = await reqWeather('北京')
+    const {weather,city}= await reqWeather(500000)
+    console.log(weather,city)
     // 更新状态
-    this.setState({dayPictureUrl, weather})
+    this.setState({weather,city})
   }
 
   getTitle = () => {
@@ -45,7 +46,7 @@ class Header extends Component {
         title = item.title
       } else if (item.children) {
         // 在所有子item中查找匹配的
-        const cItem = item.children.find(cItem => path.indexOf(cItem.key)===0)
+        const cItem = item.children.find(cItem => path.indexOf(cItem.key)===0)//cItem.key === path
         // 如果有值才说明有匹配的
         if(cItem) {
           // 取出它的title
@@ -63,7 +64,7 @@ class Header extends Component {
     // 显示确认框
     Modal.confirm({
       content: '确定退出吗?',
-      onOk: () => {
+      onOk: () => {//保证this指向组件
         console.log('OK', this)
         // 删除保存的user数据
         storageUtils.removeUser()
@@ -80,7 +81,7 @@ class Header extends Component {
   一般在此执行异步操作: 发ajax请求/启动定时器
    */
   componentDidMount () {
-    // 获取当前的时间
+    // 获取当前的时间  this指向组件对象Header
     this.getTime()
     // 获取当前天气
     this.getWeather()
@@ -102,7 +103,7 @@ class Header extends Component {
 
   render() {
 
-    const {currentTime, dayPictureUrl, weather} = this.state
+    const {currentTime, weather,city} = this.state
 
     const username = memoryUtils.user.username
 
@@ -117,8 +118,8 @@ class Header extends Component {
         <div className="header-bottom">
           <div className="header-bottom-left">{title}</div>
           <div className="header-bottom-right">
-            <span>{currentTime}</span>
-            <img src={dayPictureUrl} alt="weather"/>
+            <span>{currentTime}</span>&nbsp;&nbsp;
+            <span>{city}</span>&nbsp;
             <span>{weather}</span>
           </div>
         </div>
@@ -127,4 +128,4 @@ class Header extends Component {
   }
 }
 
-export default withRouter(Header)
+export default withRouter(Header)//包装

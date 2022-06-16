@@ -62,6 +62,9 @@
       setTimeout(() => {
         console.log('setTimeout setState()之前', this.state.count)
         this.setState(state => ({count: state.count + 1}))
+        this.setState(state => ({count: state.count + 1}))
+        this.setState(state => ({count: state.count + 1}))
+        this.setState(state => ({count: state.count + 1}))
         console.log('setTimeout setState()之后', this.state.count)
       })
     }
@@ -84,10 +87,15 @@
 
     update5 = () => {
       console.log('onclick setState()之前', this.state.count)
-      this.setState(state => ({count: state.count + 1}))
+
+      this.setState({count: this.state.count + 1})
+      this.setState({count: this.state.count + 1})
+      this.setState({count: this.state.count + 1})
+
       console.log('onclick setState()之后', this.state.count)
       console.log('onclick setState()之前2', this.state.count)
-      this.setState(state => ({count: state.count + 1}))
+      this.setState({count: this.state.count + 1})
+
       console.log('onclick setState()之后2', this.state.count)
     }
 
@@ -102,11 +110,12 @@
 
     update7 = () => {
       console.log('onclick setState()之前', this.state.count)
-      this.setState({count: this.state.count + 1})
+      this.setState(state => ({count: state.count + 1}))
+      
       console.log('onclick setState()之后', this.state.count)
 
       console.log('onclick setState()之前2', this.state.count)
-      this.setState(state => ({count: state.count + 1}))
+      this.setState({count: this.state.count + 1})
       console.log('onclick setState()之后2', this.state.count)
     }
 

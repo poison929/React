@@ -48,12 +48,12 @@ class Login extends Component {
           // 跳转到管理界面 (不需要再回退回到登陆)
           this.props.history.replace('/')
 
-        } else { // 登陆失败
+        } else { // 登陆失败  请求是有的
           // 提示错误信息
           message.error(result.msg)
         }
 
-      } else {
+      } else {//catch统一处理 请求失败
         console.log('检验失败!')
       }
     });
@@ -122,7 +122,7 @@ class Login extends Component {
                 4). 必须是英文、数字或下划线组成
                */
               }
-              {
+              {//包装表单
                 getFieldDecorator('username', { // 配置对象: 属性名是特定的一些名称
                   // 声明式验证: 直接使用别人定义好的验证规则进行验证
                   rules: [
@@ -203,7 +203,7 @@ export default WrapLogin
 /*
 async和await
 1. 作用?
-    简化promise对象的使用: 不用再使用then()来指定成功/失败的回调函数
+    简化promise对象的使用: 不用再使用then()来指定成功/失败的 回调函数
     以同步编码(没有回调函数了)方式实现异步流程
 2. 哪里写await?
     在返回promise的表达式左侧写await: 不想要promise, 想要promise异步执行的 成功 的value数据

@@ -15,7 +15,7 @@ import Line from '../charts/line'
 import Pie from '../charts/pie'
 import NotFound from '../not-found/not-found'
 import Order from '../order/order'
-
+//引入二级路由
 
 const { Footer, Sider, Content } = Layout
 
@@ -36,7 +36,7 @@ export default class Admin extends Component {
           <LeftNav/>
         </Sider>
         <Layout>
-          <Header>Header</Header>
+          <Header></Header>
           <Content style={{margin: 20, backgroundColor: '#fff'}}>
             <Switch>
               <Redirect from='/' exact to='/home'/>

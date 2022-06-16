@@ -53,7 +53,7 @@ export default class AuthForm extends PureComponent {
     this.setState({ checkedKeys });
   };
 
-
+ 
   componentWillMount () {
     this.treeNodes = this.getTreeNodes(menuList)
   }

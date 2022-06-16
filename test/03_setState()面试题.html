@@ -22,15 +22,20 @@
     componentDidMount() {
       this.setState({count: this.state.count + 1})
       this.setState({count: this.state.count + 1})
+      this.setState({count: this.state.count + 1})
       console.log(this.state.count) // 2 ==> 0
 
+      this.setState(state => ({count: state.count + 1}))
       this.setState(state => ({count: state.count + 1}))
       this.setState(state => ({count: state.count + 1}))
       console.log(this.state.count) // 3 ==> 0
 
       setTimeout(() => {
         this.setState({count: this.state.count + 1})
+        this.setState({count: this.state.count + 1})
+        this.setState({count: this.state.count + 1})
         console.log('timeout', this.state.count) // 10 ==> 6
+        this.setState(state => ({count: state.count + 1}))
 
         this.setState({count: this.state.count + 1})
         console.log('timeout', this.state.count) // 12 ==> 7

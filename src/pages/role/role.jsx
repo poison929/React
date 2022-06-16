@@ -58,7 +58,7 @@ export default class Role extends Component {
   getRoles = async () => {
     const result = await reqRoles()
     if (result.status===0) {
-      const roles = result.data
+      const roles = result.data//获取所有角色列表，更新状态
       this.setState({
         roles
       })
@@ -71,7 +71,7 @@ export default class Role extends Component {
       onClick: event => { // 点击行
         console.log('row onClick()', role)
         // alert('点击行')
-        this.setState({
+        this.setState({//选中某一行，表示选中 
           role
         })
       },
@@ -136,7 +136,7 @@ export default class Role extends Component {
     })
 
     const role = this.state.role
-    // 得到最新的menus
+    // 得到更改后最新的menus
     const menus = this.auth.current.getMenus()
     role.menus = menus
     role.auth_time = Date.now()
